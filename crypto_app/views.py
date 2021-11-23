@@ -1,8 +1,12 @@
+#views.py
 from django.shortcuts import render
-from django.http import HttpResponse
-from .tasks import test_func,crawl_currency
-# Create your vie;ws here.
-def home(request):
-    #test_func.delay()
-    crawl_currency()
-    return HttpResponse("Hello roject is running ")
+from rest_framework import generics
+from .models import Cryptocurrency
+from .serializers import CryptocurrencySerilizers
+
+class ListCryptocurrencyView(generics.ListAPIView):
+    """
+    Provides a get method handler.
+    """
+    queryset = Cryptocurrency.objects.all()
+    serializer_class = CryptocurrencySerilizers
