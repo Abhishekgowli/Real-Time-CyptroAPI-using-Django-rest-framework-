@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from crypto_app.views import ListCryptocurrencyView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('crypto_app.urls'))
+    path('', ListCryptocurrencyView.as_view()),
+
 ]
